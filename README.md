@@ -30,6 +30,7 @@ VamSander, who wrote the original version of this script, found here:
 https://hub.virtamate.com/resources/videocontroller.9797/
 
 redeyes, who contributed fixes and tweaks to the original resource posting by VamSander
+
 Eye9, for aspect ratio work, PlayNext, PlayPause, Stop, and Skip triggers
 
 
