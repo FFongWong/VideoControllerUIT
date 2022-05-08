@@ -78,6 +78,7 @@ Most settings can be altered/monitored via trigger -- particularly useful for th
 Play Once allows you to directly request any file path or URL to play on a screen, regardless of whether it's located within your VAM folder. Must be a path to an actual video -- ie, YouTube links won't work. Specify target screens and audio options like so:
 
 E:/abcdef/4.mp4, screen:3, audio:false
+
 https://somewebsite.com/vids/5.mpg, screen:0
 
 Add Files works like Play Once, except it takes a list.
