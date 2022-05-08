@@ -68,6 +68,7 @@ namespace VamSander {
 		JSONStorableStringChooser jsonAspectRatio;
 		JSONStorableFloat jsonScale;
 		JSONStorableBool jsonLoopAll;
+		JSONStorableBool jsonVolumeAll;
 		JSONStorableBool jsonEaseIn;
 		JSONStorableBool jsonRotateY;
 		JSONStorableBool jsonPlayAlphabetical;
@@ -216,10 +217,17 @@ namespace VamSander {
 			RegisterFloat(jsonVolume);
 			CreateSlider(jsonVolume, true);
 
+			
+
 			// sort alphabetically not randomly
 			jsonPlayAlphabetical = new JSONStorableBool("Alphabetical Order (off is random)", false, AlphabeticalCallback);
 			RegisterBool(jsonPlayAlphabetical);
 			CreateToggle(jsonPlayAlphabetical, true);
+
+			// Play audio from all screens or just the first
+			jsonVolumeAll = new JSONStorableBool("Audio on all screens", false, VolumeAllCallback);
+			RegisterBool(jsonVolumeAll);
+			CreateToggle(jsonVolumeAll, false);
 
 			aspectRatioMultiplier = ExtractAspectRatio(jsonAspectRatio.val);
 			SetPathTextBoxText();
@@ -458,7 +466,14 @@ namespace VamSander {
 				SetEaseInOnPlayer(vp);
 			screen.currentVideoFile = PopVideo(screenIndex);
 			vp.url = ExpandPath(screen.currentVideoFile.path);
-			ResetVolume(screen);
+			if(jsonVolumeAll.val || screenIndex == 0)
+			{
+				ResetVolume(screen);
+			}
+			else
+			{
+				MuteVolume(screen);
+			}
 			vp.Play();
 		}
 
@@ -575,18 +590,34 @@ namespace VamSander {
 
 		void SetVolumeOfAllScreens(float val)
 		{
+			Boolean first = true;
+
 			foreach (ScreenObject screen in activeScreens)
 			{
 				if (screen.audioSource)
 				{
-					screen.audioSource.volume = (screen.currentVideoFile.noAudio) ? 0 : val;
+					if(jsonVolumeAll.val || first)
+					{
+						screen.audioSource.volume = (screen.currentVideoFile.noAudio) ? 0 : val;
+					}
+					else
+					{
+						screen.audioSource.volume = 0 ;
+					}
 				}
+
+				first = false;
 			}
 		}
 
 		void ResetVolume(ScreenObject screen)
 		{
 			screen.audioSource.volume = (screen.currentVideoFile.noAudio) ? 0 : jsonVolume.val;
+		}		
+		
+		void MuteVolume(ScreenObject screen)
+		{
+			screen.audioSource.volume = 0 ;
 		}
 
 		void PlayPauseAll(bool play)
@@ -718,7 +749,14 @@ namespace VamSander {
 			screen.flatVerts = screen.meshFilter.mesh.vertices;
 			screen.lastCurvature = 0;
 			screen.easeTimer = 0;
-			ResetVolume(screen);
+			if(jsonVolumeAll.val || i == 0)
+			{
+				ResetVolume(screen);
+			}
+			else
+			{
+				MuteVolume(screen);
+			}
 			activeScreens.Add(screen);
 			return screen.panel;
 		}
@@ -1191,6 +1229,10 @@ namespace VamSander {
 		}
 
 		void VolumeCallback(JSONStorableFloat jf)
+		{
+			SetVolumeOfAllScreens(jsonVolume.val);
+		}
+		void VolumeAllCallback(JSONStorableBool js)
 		{
 			SetVolumeOfAllScreens(jsonVolume.val);
 		}
