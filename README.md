@@ -9,7 +9,7 @@ Allows you to play videos of most video formats directly from local storage on y
 
 This package contains updates and bug fixes to VamSander's original VideoController script resource, which appears to have been abandoned. However, if VamSander returns and wants to collapse this back into his original resource, I will be very happy to close out my version! (And should I disappear in the future, please feel free to repackage and post any additional fixes or tweaks that others may make to the script.)
 
-Changes from VamSander's original script:
+**Changes from VamSander's original script:**
 - Improved aspect ratio handling (Eye9)
 - New setting to control whether audio plays from all screens or just the first one
 - New and/or fixed triggers:  
