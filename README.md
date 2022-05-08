@@ -36,7 +36,7 @@ Eye9, for aspect ratio work, PlayNext, PlayPause, Stop, and Skip triggers
 
 ## Instructions
 
-Attach this script as a plugin to any atom (I generally just use a simple invisible cube), and configure it to point to a path where videos exist on your computer. 
+Attach this script as a plugin to any atom (I generally just use a simple invisible cube with collision disabled), and configure it to point to a path where videos exist on your computer. 
 
 It can play a wide variety of video formats, but only has direct access to browse locations within your VAM directory. A trigger exists to feed in files from other locations, or you can use symlinks/hardlinks/folder junctions to indirectly point it outside your VAM directory. (Note: Windows shortcuts will NOT work, only symlinks and junctions!)
 
@@ -46,6 +46,8 @@ I suggest creating a directory called VAM/VideoPlayer in which to build your lib
 - VAM/VideoPlayer
 - VAM/VideoPlayer/Channel 1
 - VAM/VideoPlayer/Channel 2
+
+The base VideoPlayer instance and three logical groupings of controls are wrapped in provided subscenes to help get you off to the races adding instances to your own scenes -- just be sure to add the VideoPlayerBase subscene first to ensure that the action triggers for the control subscenes connect up properly when added!
 
 
 ## Settings
