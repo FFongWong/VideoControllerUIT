@@ -217,6 +217,11 @@ namespace VamSander {
 			RegisterFloat(jsonVolume);
 			CreateSlider(jsonVolume, true);
 
+				// Play audio from all screens or just the first
+			jsonVolumeAll = new JSONStorableBool("Audio on all screens", false, VolumeAllCallback);
+			RegisterBool(jsonVolumeAll);
+			CreateToggle(jsonVolumeAll, true);
+
 			
 
 			// sort alphabetically not randomly
@@ -224,10 +229,7 @@ namespace VamSander {
 			RegisterBool(jsonPlayAlphabetical);
 			CreateToggle(jsonPlayAlphabetical, true);
 
-			// Play audio from all screens or just the first
-			jsonVolumeAll = new JSONStorableBool("Audio on all screens", false, VolumeAllCallback);
-			RegisterBool(jsonVolumeAll);
-			CreateToggle(jsonVolumeAll, false);
+		
 
 			aspectRatioMultiplier = ExtractAspectRatio(jsonAspectRatio.val);
 			SetPathTextBoxText();
