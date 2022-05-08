@@ -41,7 +41,8 @@ It can play a wide variety of video formats, but only has direct access to brows
 
 I suggest creating a directory called VAM/VideoPlayer in which to build your library of videos -- the included sample scene is configured to use that directory (as will be any other scenes that I publish in the future). Plus, it's clean, semantically clear, and matches the existing naming scheme for directories in VAM's base folder.
 
-Settings
+
+## Settings
 
 Layout allows you to choose from a number of screen arrangement styles. (Note: Some are a bit experimental, and not all will play nicely with mixed aspect ratios.)
 .
