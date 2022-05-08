@@ -42,6 +42,11 @@ It can play a wide variety of video formats, but only has direct access to brows
 
 I suggest creating a directory called VAM/VideoPlayer in which to build your library of videos -- the included sample scene is configured to use that directory (as will be any other scenes that I publish in the future). Plus, it's clean, semantically clear, and matches the existing naming scheme for directories in VAM's base folder.
 
+**Speaking of the demo scene**, check it out to see a basic installation of the plugin, plus UI examples for many of the common actions users might want to access. To make full use of the demonstration of channel changing, you'll want to have videos available to play in all three of the following directories:  
+- VAM/VideoPlayer
+- VAM/VideoPlayer/Channel 1
+- VAM/VideoPlayer/Channel 2
+
 
 ## Settings
 
