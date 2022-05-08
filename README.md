@@ -9,6 +9,8 @@ VideoControllerUIT (Updates and fixes for UI Triggers to VamSander's VideoContro
 
 Allows you to play videos of most video formats directly from local storage on your PC using Unity Video Player rather than the traditional solution of using WebPanels (which are a bit more cumbersome and have limited format support). Configurable to play multiple videos at once in a variety of different layouts, and accepts triggers to enable the construction of complex player UI. 
 
+Referenced packages are ONLY needed for the very basic demo scene! (And should be part of the base VAM install anyway.)
+
 This package contains updates and bug fixes to VamSander's original VideoController script resource, which appears to have been abandoned. However, if VamSander returns and wants to collapse this back into his original resource, I will be very happy to close out my version! (And should I disappear in the future, please feel free to repackage and post any additional fixes or tweaks that others may make to the script.)
 
 **Changes from VamSander's original script:**
