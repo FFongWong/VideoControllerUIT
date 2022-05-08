@@ -52,6 +52,7 @@ namespace VamSander {
 		float easeInScalar = 1.0f;
 		float rotateSpeed = 360.0f / 30.0f; // degrees per second
 		bool pauseVideo;
+		bool pauseVideoFirstScreen;
 
 		List<VideoFile> videoFiles = new List<VideoFile>();
 		List<VideoFile> toPlay = new List<VideoFile>();
@@ -244,17 +245,29 @@ namespace VamSander {
 			jsonAddFile = new JSONStorableString("Add Files", "Simple Example: c:\\MyVids\\Video1.mpg\nAdvanced Example: c:\\MyVids\\Video1.mpg, screen:2, audio:false\nOne video per line, screen and audio are optional", AddVideoCallback);
 			RegisterString(jsonAddFile);
 
-			// play all
+			// play next all
 			JSONStorableAction jsonPlayNext = new JSONStorableAction("PlayNext", PlayNextCallback);
 			RegisterAction(jsonPlayNext);
+			
+			// play next
+			JSONStorableAction jsonPlayNextFirstScreen = new JSONStorableAction("PlayNextFirstScreen", PlayNextFirstScreenCallback);
+			RegisterAction(jsonPlayNextFirstScreen);
 
 			// play/pause all
 			JSONStorableAction jsonPlayPause = new JSONStorableAction("PlayPause", PlayPauseCallback);
-			RegisterAction(jsonPlayPause);
+			RegisterAction(jsonPlayPause);			
+			
+			// play/pause 
+			JSONStorableAction jsonPlayPauseFirstScreen = new JSONStorableAction("PlayPauseFirstScreen", PlayPauseFirstScreenCallback);
+			RegisterAction(jsonPlayPauseFirstScreen);
 
 			// stop all
 			JSONStorableAction jsonStop = new JSONStorableAction("Stop", StopCallback);
 			RegisterAction(jsonStop);
+
+			// stop
+			JSONStorableAction jsonStopFirstScreen = new JSONStorableAction("StopFirstScreen", StopFirstScreenCallback);
+			RegisterAction(jsonStopFirstScreen);
 
 			// refresh
 			JSONStorableAction jsonRefresh = new JSONStorableAction("Refresh/Clear", RefreshCallback);
@@ -622,7 +635,7 @@ namespace VamSander {
 			screen.audioSource.volume = 0 ;
 		}
 
-		void PlayPauseAll(bool play)
+		void PlayPauseAll(bool play, bool firstScreenOnly = false)
 		{
 			foreach (ScreenObject screen in activeScreens)
 			{
@@ -630,14 +643,24 @@ namespace VamSander {
 					screen.panel.Play();
 				else
 					screen.panel.Pause();
+
+				if(firstScreenOnly)
+				{
+					break;
+				}
 			}
 		}
 		
-		void StopAll()
+		void StopAll(bool firstScreenOnly = false)
 		{
 			foreach (ScreenObject screen in activeScreens)
 			{
 				screen.panel.Stop();
+
+				if(firstScreenOnly)
+				{
+					break;
+				}
 			}
 		}
 		
@@ -1184,6 +1207,7 @@ namespace VamSander {
 		void RefreshButtonCallback()
 		{
 			pauseVideo = false;
+			pauseVideoFirstScreen = false;
 			videoFiles = ReadFilesAtPath(jsonVideoFolder.val);
 			SetPathTextBoxText();
 			Shuffle();
@@ -1362,18 +1386,36 @@ namespace VamSander {
 		void PlayNextCallback()
 		{
 			pauseVideo = false;
+			pauseVideoFirstScreen = false;
 			ResetButtonCallback();
+		}
+
+		void PlayNextFirstScreenCallback()
+		{
+			pauseVideoFirstScreen = false;
+			VideoPlayer player = GetScreen(0);
+			EndReached(player);
 		}
 
 		void PlayPauseCallback()
 		{
 			pauseVideo = !pauseVideo;
+			pauseVideoFirstScreen = pauseVideo;
 			PlayPauseAll(!pauseVideo);
+		}
+		void PlayPauseFirstScreenCallback()
+		{
+			pauseVideoFirstScreen = !pauseVideoFirstScreen;
+			PlayPauseAll(!pauseVideoFirstScreen, true);
 		}
 		
 		void StopCallback()
 		{
 			StopAll();
+		}		
+		void StopFirstScreenCallback()
+		{
+			StopAll(true);
 		}
 
 		void RefreshCallback()
