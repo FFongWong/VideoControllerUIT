@@ -218,7 +218,7 @@ namespace VamSander {
 			CreateSlider(jsonVolume, true);
 
 				// Play audio from all screens or just the first
-			jsonVolumeAll = new JSONStorableBool("Audio on all screens", false, VolumeAllCallback);
+			jsonVolumeAll = new JSONStorableBool("Audio on All Screens", false, VolumeAllCallback);
 			RegisterBool(jsonVolumeAll);
 			CreateToggle(jsonVolumeAll, true);
 
