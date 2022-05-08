@@ -1,5 +1,7 @@
 # VideoControllerUIT
- Unity Video Player wrapper plugin for Virt-A-Mate
+ Unity Video Player wrapper plugin for Virt-A-Mate  
+Learn more about VAM here: https://hub.virtamate.com/wiki/about_vam/
+
 
 ## Description 
 
@@ -23,6 +25,8 @@ This package contains updates and bug fixes to VamSander's original VideoControl
     - Refresh/Clear
     - Volume from all screens
 
+Source code is available on GitHub here:  
+https://github.com/FFongWong/VideoControllerUIT
 
 ## Credits
 
