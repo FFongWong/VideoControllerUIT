@@ -111,12 +111,16 @@ Stop ends playback on all screens.
 
 ## Useful tips
 
+**Making a channel change button**
 If you want to create buttons to change "channels" for your VideoController instances, use the following sequence of triggers:
 
 VideoPath
 Refresh/Clear
 PlayNext
 
+See the included demo scene for examples!
+
+**Audio stuttering**
 
 If you're experiencing audio stuttering, it might be unavoidable due to a disagreement between the Unity video player the encoding of your video. However, it might also be due to the complexity of the scene. I've noticed that scenes heavy with computationally challenging content (particularly complex hair and clothing) can easily cause audio stuttering, so try dialing that back if possible.
 
