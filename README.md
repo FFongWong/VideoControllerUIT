@@ -26,6 +26,7 @@ This package contains updates and bug fixes to VamSander's original VideoControl
     - Skip (Eye9)
     - Refresh/Clear
     - Volume from all screens
+- Included demo scene and functional subscenes to quickly learn and implement the plugin in your own scenes.
 
 Source code is available on GitHub here:  
 https://github.com/FFongWong/VideoControllerUIT
